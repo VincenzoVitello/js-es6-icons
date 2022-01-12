@@ -115,4 +115,37 @@ const icons = [
 //creo variabili per interagire con elementi del DOM
 let container = document.querySelector('.ms_container');
 let selector = document.getElementById('selector');
-//creo funzione che mi permetta di creare gli elementi box
+let animals = icons.filter((element) => { return element.type == "animal"});
+let users = icons.filter((element) => { return element.type == "user"});
+let vegetables = icons.filter((element) => { return element.type == "vegetable"});
+console.log (animals)
+console.log 
+//creo funzione che mi permetta di creare gli elementi box senza filtrarli
+function genCards(){
+	for (i=0; i<icons.length; i++){
+		container.innerHTML += 
+		`
+		<div class="box d-flex justify-content-center align-items-center">
+            <i class="fas fa-${icons[i].name}" style="color: ${icons[i].color};"></i>
+        </div>
+		`
+	}
+}
+genCards(icons);
+//creo ascoltatore di eventi sul selettore filtri
+selector.addEventListener('change', function(){
+	if(selector.value == "animal"){
+		container.innerHTML = ""
+		genCards(animals);
+	}else if(selector.value == "user"){
+		container.innerHTML = ""
+		genCards(users);
+	}else if(selector.value == "vegetable"){
+		container.innerHTML = ""
+		genCards(vegetables)
+	}else{
+		container.innerHTML = ""
+		genCards(icons)
+	}
+});
+//NON SO PERCHé NON SEGNALA ERRORI IN CONSOLE EPPURE NON VIENE GESTITO L'EVENTO CHANGE!!!!!!!!!! CODROIPO
