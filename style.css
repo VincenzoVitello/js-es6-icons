@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.ms_header{
+    background-color: seagreen;
+    height: 100px;
+    width: 100%;
+    color: white;
+}
+.box{
+    background-color: darkgray;
+    height: 150px;
+    width: 200px;
+    margin: 5px;
+    border-radius: 20px;
+}
+.ms_container{
+    background-color: lightgray
+}
