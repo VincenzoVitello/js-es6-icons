@@ -16,6 +16,9 @@
     margin: 5px;
     border-radius: 20px;
 }
-.ms_container{
+.box .fas{
+    font-size: 35px;
+}
+.body{
     background-color: lightgray
 }

@@ -4,112 +4,112 @@ const icons = [
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'crow',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'dog',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'dove',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'dragon',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'horse',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'hippo',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'fish',
 		prefix: 'fa-',
 		type: 'animal',
 		family: 'fas',
-		color: 'orange'
+		color: generateRandomColor()
 	},
 	{
 		name: 'carrot',
 		prefix: 'fa-',
 		type: 'vegetable',
 		family: 'fas',
-		color: 'green'
+		color: generateRandomColor()
 	},
 	{
 		name: 'apple-alt',
 		prefix: 'fa-',
 		type: 'vegetable',
 		family: 'fas',
-		color: 'green'
+		color: generateRandomColor()
 	},
 	{
 		name: 'lemon',
 		prefix: 'fa-',
 		type: 'vegetable',
 		family: 'fas',
-		color: 'green'
+		color: generateRandomColor()
 	},
 	{
 		name: 'pepper-hot',
 		prefix: 'fa-',
 		type: 'vegetable',
 		family: 'fas',
-		color: 'green'
+		color: generateRandomColor()
 	},
 	{
 		name: 'user-astronaut',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas',
-		color: 'blue'
+		color: generateRandomColor()
 	},
 	{
 		name: 'user-graduate',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas',
-		color: 'blue'
+		color: generateRandomColor()
 	},
 	{
 		name: 'user-ninja',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas',
-		color: 'blue'
+		color: generateRandomColor()
 	},
 	{
 		name: 'user-secret',
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas',
-		color: 'blue'
+		color: generateRandomColor()
 	}
 ];
 //creo variabili per interagire con elementi del DOM
@@ -118,29 +118,32 @@ let selector = document.getElementById('selector');
 let animals = icons.filter((element) => { return element.type == "animal"});
 let users = icons.filter((element) => { return element.type == "user"});
 let vegetables = icons.filter((element) => { return element.type == "vegetable"});
-console.log (animals)
-console.log 
-//creo funzione che mi permetta di creare gli elementi box senza filtrarli
-function genCards(){
-	for (i=0; i<icons.length; i++){
+
+function genCards(arrayFiltred){
+	arrayFiltred.forEach((element) => {
 		container.innerHTML += 
 		`
-		<div class="box d-flex justify-content-center align-items-center">
-            <i class="fas fa-${icons[i].name}" style="color: ${icons[i].color};"></i>
-        </div>
-		`
-	}
+ 		<div class="box d-flex justify-content-center align-items-center">
+             <i class="fas fa-${element.name}" style="color: ${element.color};"></i>
+			 <br>
+			 <p>${element.name}</p>
+         </div>
+ 		`
+	})
 }
+
 genCards(icons);
+
 //creo ascoltatore di eventi sul selettore filtri
 selector.addEventListener('change', function(){
-	if(selector.value == "animal"){
+	if(this.value == "animals"){
 		container.innerHTML = ""
 		genCards(animals);
-	}else if(selector.value == "user"){
+	}else if(this.value == "user"){
+		console.log ('ciao');
 		container.innerHTML = ""
 		genCards(users);
-	}else if(selector.value == "vegetable"){
+	}else if(this.value == "vegetable"){
 		container.innerHTML = ""
 		genCards(vegetables)
 	}else{
@@ -148,4 +151,11 @@ selector.addEventListener('change', function(){
 		genCards(icons)
 	}
 });
-//NON SO PERCHé NON SEGNALA ERRORI IN CONSOLE EPPURE NON VIENE GESTITO L'EVENTO CHANGE!!!!!!!!!! CODROIPO
+
+
+//genero funzione da richiamare poi come valore di color all'interno dei miei oggetti contenuti nell'array icons
+function generateRandomColor()
+{
+    var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+    return randomColor;
+}
